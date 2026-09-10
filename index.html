@@ -38,31 +38,27 @@
       border-radius: 12px;
       padding: 32px;
       width: 100%;
-      max-width: 480px;
+      max-width: 420px;
       text-align: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
-    /* KOTAK CONTAINER 4:3 */
+    /* KOTAK CONTAINER 1:1 PERSEGI FULL */
     .logo-box {
       width: 100%;
-      aspect-ratio: 4 / 3;
-      background-color: #151619;
-      border: 1px dashed var(--border-color);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
       margin-bottom: 24px;
       overflow: hidden;
+      border: 1px solid var(--border-color);
     }
 
-    /* LOGO 400x400 TEPAT DI TENGAH */
+    /* GAMBAR FULL NGEPAS KOTAK */
     .logo-box img {
-      max-width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .badge {
@@ -103,7 +99,7 @@
 <body>
 
   <div class="container">
-    <!-- LOGO CONTAINER -->
+    <!-- LOGO CONTAINER 1:1 -->
     <div class="logo-box">
       <img src="logo.jpg" alt="RadigaSoft Logo">
     </div>

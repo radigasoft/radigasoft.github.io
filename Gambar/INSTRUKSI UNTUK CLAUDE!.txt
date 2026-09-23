@@ -1,0 +1,415 @@
+PROYEK: GENERATOR RUMAH DESA PROSEDURAL (DELPHI 7 + GRAPHICS32)
+
+Kamu mulai dari nol, tidak ada konteks sebelumnya. Baca seluruh pesan ini,
+lalu KERJAKAN LANGSUNG sampai selesai. Jangan bertanya, jangan minta
+konfirmasi, jangan menunggu persetujuan di tengah jalan. Kalau ada hal yang
+ambigu, putuskan sendiri yang terbaik dan catat keputusannya di file catatan.
+
+============================================================================
+1. TUJUAN
+============================================================================
+Satu unit Delphi 7 bernama RumahDesa3 (file RumahDesa3.pas, baris pertama
+"unit RumahDesa3;") yang menggambar rumah desa isometrik bergaya fantasi
+abad pertengahan, sepenuhnya prosedural (tanpa memuat gambar dari disk atau
+resource). Setiap klik tombol harus menghasilkan rumah yang BERBEDA (bentuk,
+atap, dinding, ukuran, detail, warna), dengan tingkat detail dan kualitas
+yang mendekati gambar referensi terlampir. Bukan sketsa, bukan kerangka,
+bukan primitif.
+
+Nama unit dan nama file TETAP RumahDesa3 / RumahDesa3.pas selamanya. Jangan
+diganti di tengah pekerjaan maupun di revisi berikutnya.
+
+============================================================================
+2. GAMBAR REFERENSI (lampiran, klasifikasikan dari isinya kalau nama file beda)
+============================================================================
+Semua gambar bergaya 3D-render isometrik stylized (bentuk tebal, warna jenuh,
+bevel dan highlight tipis di tiap tepi). Ini acuan KUALITAS.
+- "Prompt A_1", "Prompt A_2": 4 rumah tunggal dengan bentuk berbeda (denah L
+  beratap pelana ganda menyilang, dua lantai dengan balkon dan tangga luar,
+  atap limas, atap gambrel dengan sayap beratap lebih rendah). A_2 adalah
+  varian A_1 (desain sama, warna beda). Sumber variasi BENTUK.
+- "Prompt B_1": 4 rumah beratap genteng merah dengan tata letak berbeda,
+  cahaya sama. Bukan rotasi presisi. Pakai hanya untuk membaca pencahayaan
+  tiap sisi dinding dan atap.
+- "Prompt C_1" sampai "Prompt C_8": close-up satu rumah per gambar (sirap
+  biru, jerami, genteng merah, sirap hijau, terpal biru, rumah panggung).
+  Sumber utama tekstur dan detail.
+- "Prompt D_1", "Prompt D_1 variasi 2": lembar 20 objek kecil (pagar lurus,
+  pagar dengan gerbang, pagar sudut, tong, tumpukan kayu bakar, gerobak,
+  petak sayur, sumur batu beratap, kanopi kain krem dan biru, tali jemuran,
+  tangga, teras kayu, meja dan bangku, peti dan karung, pot tanaman, kolam
+  kecil, tumpukan jerami, paving batu, semak berbunga). Variasi 2 adalah
+  varian desain yang sama.
+- "Prompt E_1", "Prompt E_2": 12 sampel permukaan berbentuk irisan atap
+  miring (jerami, genteng merah, sirap biru, sirap hijau, batu tulis ungu,
+  terpal biru, dinding papan, plester dengan balok silang, batu kasar, bata,
+  paving batu, tanah berumput). E_2 adalah varian E_1.
+- Bila terlampir gambar 3x3 berisi 9 rumah dengan halaman: HANYA acuan tata
+  letak halaman (pagar, kebun, jemuran di atas alas belah ketupat). Tingkat
+  detailnya lebih rendah dari gambar lain, jangan dijadikan patokan detail.
+- Bila terlampir "hasil generator lama": contoh HASIL BURUK yang harus
+  dilampaui jauh.
+
+============================================================================
+2B. GAYA VISUAL DAN CAHAYA (sudah ditetapkan, jangan diukur ulang). WAJIB DIPATUHI!
+============================================================================
+- Cahaya datang dari KANAN-ATAS, bayangan jatuh ke KIRI-BAWAH. Ini harus
+  cocok dengan terrain proyek. Tulis arah cahaya sebagai konstanta.
+- Bayangan jatuh berwarna gelap kebiruan transparan, tepi lembut tipis,
+  ada bayangan kontak lebih gelap di dasar bangunan.
+- Hal yang khas dan harus ada: balok bubungan dengan klem besi, papan tepi
+  atap dengan ujung balok menonjol, cerobong batu dengan puncak bata dan
+  lubang asap gelap (HARUS TERGAMBAR KE 4 SISINYA DENGAN BAIK!), jendela atap
+  (dormer) beratap pelana kecil, pondasi batu bersudut, dinding plester putih 
+  bernoda dengan bagian terkelupas  memperlihatkan batu, rangka kayu dengan 
+  braket dan pita besi, shutter  biru, kotak bunga di bawah jendela, lentera 
+  dengan cahaya hangat, banner (biru dan merah), kanopi kain krem, teras kayu 
+  dan tangga batu atau kayu,  balkon, penunjuk arah angin, jendela yang menyala 
+  kuning hangat.
+- Properti yang menempel di rumah: tong, peti, karung, tumpukan kayu bakar,
+  pot tanaman, roda gerobak, tangga bersandar, tali jemuran dengan kain.
+- Pelapukan di mana-mana: lumut kuning-hijau di sela genteng dan sirap,
+  tepi cat mengelupas, rumput dan bunga kecil di kaki dinding.
+
+============================================================================
+2C. PRIORITAS KERJA (supaya tiap tahap sudah bisa dipakai)
+============================================================================
+Kerjakan bertahap. Tiap tahap menghasilkan RumahDesa3.pas LENGKAP dan siap
+dipakai (nama file tetap), lalu lanjut otomatis ke tahap berikutnya tanpa
+bertanya:
+- Tahap A: massing beragam, semua material atap, dinding + rangka kayu +
+  pondasi batu, cerobong, dormer, bayangan, API lengkap dan
+  BikinLembarUjiRumahDesa3.
+- Tahap B: pintu, jendela (shutter, kotak bunga, cahaya), kanopi, teras,
+  tangga, balkon, banner, lentera.
+- Tahap C: properti menempel dan aksesoris halaman (semua objek lembar D),
+  alas tanah, pagar, jalan paving.
+- Tahap D: pelapukan, lumut, penyempurnaan variasi dan warna, uji 12 rumah.
+Kalau satu balasan tidak cukup, potong di batas antar-prosedur dan akhiri
+dengan "[BERSAMBUNG]" seperti aturan di bagian 10.
+
+============================================================================
+3. CARA MEMBACA GAMBAR (wajib, jangan dilewati)
+============================================================================
+Zoom/crop tiap gambar 2x sampai 4x. Untuk tiap material dan objek:
+- sampling warna piksel asli, catat nilai RGB tiap tingkat (highlight,
+  tengah, bayangan, dan tepi tergelap)
+- ukur ukuran dalam piksel relatif terhadap lebar rumah
+- ukur proyeksi: sudut kemiringan garis tepi alas dan atap, rasio sumbu,
+  dinding mana yang tampak dan menghadap ke arah mana
+- verifikasi arah cahaya sesuai bagian 2B: sisi dinding dan atap mana yang
+  terang atau gelap, dan bentuk bayangan jatuhnya
+- perhatikan cara detail dibangun: tiap genteng punya variasi warna sendiri,
+  ada highlight tipis di tepi yang kena cahaya, ada gelap di celah dan di
+  bawah tiap lapis, dst.
+- PASTIKAN SEMUA DETAIL GAMBAR TERTANGKAP DENGAN BAIK KE DALAM KODE DELPHI!
+- JANGAN SEDERHANAKAN OBJECT-OBJECT ATAU BIDANG-BIDANG YANG KOMPLEKS! 
+
+============================================================================
+4. TAHAP KERJA
+============================================================================
+TAHAP 0, ANALISIS. Tulis resep tiap komponen dan simpan di file
+RumahDesa3_Catatan.txt. Format tiap komponen: dibangun dari apa, ukuran
+relatif, palet RGB 3-5 tingkat, tekstur/pola, arah cahaya dan bayangan,
+parameter variasi beserta rentangnya, aturan kecocokan dan penempatan.
+Komponen minimal: proyeksi dan alas tanah, massing/denah, atap (tiap
+material), dinding (tiap jenis), rangka kayu, cerobong, pintu, jendela
+(bingkai, kaca, shutter), teras/tangga/kanopi/atap tambahan, pondasi,
+aksesoris halaman (tiap objek), pelapukan (lumut, noda, cat kusam), bayangan
+(jatuh, kontak, ambient occlusion), tepi alas (rumput, bunga, paving).
+Setelah analisis selesai, LANGSUNG lanjut ke Tahap 1 di balasan yang sama.
+
+TAHAP 1, GENERATOR PER KOMPONEN. Satu fungsi/prosedur per resep. Kalau kamu
+punya alat menjalankan kode (Python dan sejenisnya), prototipe render di
+sana, bandingkan side-by-side dengan crop referensi, iterasi sampai tajam
+dan mirip, baru porting ke Pascal Delphi 7 dengan logika yang sama persis.
+Kalau tidak ada alat, hitung koordinat dan warna secara analitis dari hasil
+ukuran di Tahap 0.
+
+TAHAP 2, RAKIT. Urutan: alas tanah, bayangan jatuh, massing, dinding, atap,
+detail (pintu, jendela, cerobong, rangka kayu), tambahan (teras, tangga,
+kanopi), aksesoris halaman, pelapukan, ambient occlusion. Objek yang saling
+tumpang tindih diurutkan dengan y-sort.
+
+TAHAP 3, VARIASI. Semua keputusan acak diturunkan dari satu Seed (hasil
+sama untuk Seed sama, beda untuk Seed beda).
+
+TAHAP 4, CATATAN. Lengkapi RumahDesa3_Catatan.txt: semua resep, kamus variasi,
+parameter, keputusan desain, dan status pekerjaan, supaya bisa dilanjutkan
+di chat lain.
+
+============================================================================
+5. ARSITEKTUR YANG DISARANKAN
+============================================================================
+Bangun rumah sebagai model 3D SUPER COMPLEX DAN ULTRA DETAILED!! ADA BANYAK OBJECT
+GI GAMBAR YANG AKU KASIH, KAU TANGKAP ITU SEMUA VISUALNYA DENGAN BAIK!
+dalam koordinat dunia, proyeksikan ke isometrik memakai proyeksi
+yang kamu ukur dari referensi, rasterisasi tiap permukaan (poligon) dengan
+tekstur prosedural berdasarkan koordinat permukaan (u,v) sehingga tekstur
+genteng dan papan mengikuti kemiringan tiap sisi. Pencahayaan per permukaan
+dari normal x arah cahaya, ditambah ambient occlusion. Render ke sprite
+TBitmap32 yang punya alpha, lalu di-blend ke bitmap tujuan. Supersampling
+2x lalu diturunkan boleh dipakai untuk tepi halus, tapi tekstur dan bentuk
+tetap tajam. Kamu boleh memilih arsitektur lain kalau hasilnya lebih baik.
+
+============================================================================
+6. KAMUS VARIASI (minimum, boleh lebih)
+============================================================================
+- massing: persegi panjang, persegi panjang panjang, denah L, dua sayap,
+  dua lantai, lantai atas menjorok, rumah panggung, menara sempit, dengan
+  gudang/lean-to menempel (minimal 8 bentuk)
+- bentuk atap: pelana, limas, gambrel, miring satu, kerucut
+- material atap: jerami, genteng merah/oranye, sirap kayu, sirap biru,
+  sirap hijau, batu tulis ungu/abu, terpal (tiap material minimal 4 varian
+  palet, dan tiap elemen kecil punya jitter warna sendiri)
+- dinding: papan kayu, plester dengan rangka kayu, batu kasar, bata,
+  campuran (bawah batu, atas kayu), papan lapuk
+- cerobong: minimal 4 jenis, plus tanpa cerobong
+- pintu minimal 4 jenis, jendela minimal 5 jenis (dengan shutter, kotak
+  bunga, kaca berkisi)
+- tambahan: kanopi kain (beberapa warna), teras, tangga, balkon
+- aksesoris halaman: semua objek di lembar D, dengan aturan penempatan
+  (pagar mengelilingi alas dengan celah gerbang, tong dekat pintu, petak
+  sayur di sisi, jemuran di sisi lain, gerobak di halaman, dst)
+- alas tanah: belah ketupat dengan ukuran bervariasi, jalan paving dari pintu
+  ke gerbang, rumput dan bunga kecil di tepi
+- pelapukan: tingkat 0-100% (lumut, noda, cat kusam, genteng hilang)
+Syarat lulus: 12 Seed acak menghasilkan 12 rumah yang jelas berbeda
+siluetnya atau warnanya, dan tidak ada dua yang terlihat mirip.
+- tambahan bentuk atap: pelana ganda menyilang, dormer (jendela atap
+  beratap pelana kecil), atap lean-to di atas teras atau pintu
+- tambahan massing: sayap rendah menempel dengan atap terpisah, rumah panggung
+  dengan tiang batu di bawah tiang kayu
+- tambahan properti: banner biru/merah, lentera, jemuran, tong, peti, karung
+
+============================================================================
+7. KUALITAS VISUAL! PENTING! WAJIB PATUHI INI!
+============================================================================
+- Bukan sketsa: tanpa garis kontur hitam ala coretan, bentuk dibangun dari
+  shading, permukaan, dan tekstur.
+- Objek tajam dan bersih, tanpa blur pada bentuk, tepi anti-aliasing rapi.
+- Tekstur bukan warna rata: variasi per elemen, grain halus, highlight tipis
+  di tepi yang kena cahaya, gelap di celah dan di bawah tiap lapis.
+- Bayangan jatuh di tanah searah cahaya, bayangan kontak di dasar bangunan,
+  ambient occlusion di sudut dan bawah atap.
+- Arah cahaya ditulis sebagai konstanta di satu tempat supaya mudah diganti.
+- Sebelum menyerahkan hasil, bandingkan tiap komponen dengan crop referensi
+  dan perbaiki yang masih lebih polos atau lebih kasar dari referensi.
+
+  Karena ini bukan pertama kalinya kau kusuruh bikin kode ini (HASILMU SEBELUMNYA
+  SELALU JELEK! CUMA GAMBAR RUMAH DENGAN BANGUN SEGIEMPAT PRIMITIF SEADANYA DAN
+  KAU TAMBAHKAN ATAP SEGI TIGA LALU DIKASIH TEXTURE! APA-APAAN ITU!! NILAI 1 DARI 10
+  UNTUK DETAIL!!). YANG SERIUS DAN YANG BENER KALAU KERJA! JANGAN BUANG-BUANG TOKEN
+  GW YANG BERHARGA! BEKERJA DEMI NAMA BAIKMU DAN ANTHROPIC! JADI SEKARANG PATUHI INI:
+- JANGAN BIKIN KUALITAS GAMBAR YANG JELEK ATAU ASAL-ASALAN!
+- JANGAN BIKIN OBJECT PRIMITIF! JANGAN BIKIN BENTUK DASAR DOANG TRUS KASIH SKIN! PAKAI
+JIWA SENIMU! JANGAN BIKIN MALU! KAU ITU AI TERBAIK 2025 2026! PERTAHANKAN GELARMU!
+JANGAN BIKIN OUTPUT MURAHAN! BIKIN GAMBAR PER OBJECTNYA DENGAN KUALITAS DAN DETAIL SUPER
+TINGGI! GAK USAH TAKUT KODE UNITNYA BAKAL MENGHABISKAN RATUSAN KB ATAU MB SEKALIPUN YANG
+PENTING HASILNYA SUPER BAGUS SEPERTI ASLINYA KALAU PERLU! BUAT APA GW KASIH GAMBAR
+OBJECT-OBJECT RUMAHNYA (ATAP, KUSEN, PINTU, JENDELA, KANOPI, KERANJANG BUAH, HALAN, 
+RUMPUT, PAGAR, CEROBONG ASAP, DLL DIMANA PER OBJECT-OBJECT TADI ITU PUNYA KEDALAMAN 
+DETAIL SENDIRI YANG TINGGI. KAU TANGKAP SEMUA DETAIL-DETAIL ITU DENGAN BAIK KALAU 
+PERLU SAMPAI KERAPATAN PIXEL YANG RAPAT DEMI DAPAT HASIL TERBAIK! REKAM JUGA WARNA DAN 
+TEXTURENYA DENGAN BAIK!) DENGAN DETAIL KALAU YANG LU SCAN/BACA CUMA SEBAGIAN KECIL PARTNYA!
+PELAJARI SAMPAI DIBAGIAN2 KECILNYA DAN BIKIN GENERATORNYA PER ELEMEN! 
+- AKU TIDAK PEDULI WALAU 1 RUMAH BUTUH 10 DETIK UNTUK DIGAMBAR ASALKAN SEMUA DETAILNYA
+DAPAT DITANGKAP DENGAN ULTRA BAIK!
+- MISAL JIKA ATAP RUMAH PADA GAMBAR REFERENSI BENTUKNYA KOMPLEKS DENGAN BANYAK PATAHAN
+GARIS, YA BIKIN JUGA DENGAN KOMNPLEKS! JANGAN MALAH DI SEDERHANAKAN DIPUKUL RATA JADI
+ATAP SEGITIGA WOI!!! BEGITU JUGA DENGAN TEMBOKNYA. KALAU ADA BANYAK ORNAMEN ATAU KUSEN
+ATAU PLANG KAYU ATAU HIASAN DI TEMBAOKNYA, YA LU BIKIN JUGA DENGAN SEMPURNA WALAU KOMPLEX!
+JANGAN CUMA DIBIKIN GAMBAR DINDING SEGIEMPAT!!! BEGITU JUGA DENGAN HAL-HAL LAINNYA! REKAM
+PERSIS SEMUA YANG TERLIHAT DI GAMBAR REFERENSI GAK PERDULI MAU SEBERAPA BESAR ATAU BERAT
+HASILNYA NANTI! YANG DICARI ITU ADALAH KUALITAS, BUKAN KECEPATAN!
+- LIHAT DAN CONTOH ITU UNIT "Bikin_TerrainLumut.pas" DIMANA DISITU KODENYA BENAR2
+BERUSAHA UNTUK MEMBUAT DETAIL OBJECT SEBANYAK DAN SEDETAIL MUNGKIN DAN MENGHINDARI
+OUTPUT-OUTPUT YANG PRIMIF! JADI LU JUGA HARUS SEIMBANG JANGAN MAU KALAH! KALAU MISAL BIKIN GAMBAR PEKARANGAN YA BIKIN YANG DETAIL SAMPAI KE UBIN-UBINNYA, POT BUNGANYA, RUMPUTNYA, TEXTURENYA, BATANYA, KERANJANG BUAHNYA, DLL! 
+JANGAN CUMA LU KASIH KOTAK CATUR IJO COKLAT DOANG!
+ 
+
+============================================================================
+8. API UNIT (nama dan tanda tangan harus persis)
+============================================================================
+interface
+  procedure BikinRumahDesa3(Image321: TImage32); overload;
+  procedure BikinRumahDesa3(Image321: TImage32; Jumlah: Integer); overload;
+  procedure GambarRumahDesa3(Bmp: TBitmap32; CX, CY, Skala: Single;
+    Seed: Integer; Halaman: Boolean);
+  procedure BikinLembarUjiRumahDesa3(Image321: TImage32);
+  
+  Bikin juga agar dia bisa dipanggil dengan banyak variabel (lu sesuaikan sendiri) misal:
+  BikinRumahDesa3(Jumlah, koordinat x pada Image321, koordinat y pada Image321, pagar (Y/N), halaman (Y/N), CerobongAsap (Y/N), (Day/Night), KananBawah/KiriBawah/KiriAtas/KananAtas)
+  Contoh: BikinRumahDesa3(3, 250, 300, N, N, Y, Night,KananBawah))
+  kalau night maka cahaya jendela dan pintu yang terbuka berwarna terang. begitu juga jika ada lampu di luar rumah, kasih cahayanya. tapi kalau siang hari, bikin normal tanpa cahaya jendela, lampu dan pintunya.
+
+Perilaku:
+- BikinRumahDesa3(Image321): menggambar 2 rumah BERBEDA berdampingan di
+  Image321.Bitmap (kira-kira di 0.3 dan 0.7 lebar, sekitar 0.65 tinggi),
+  di atas isi bitmap yang sudah ada (bitmap TIDAK dihapus, karena nanti
+  ditaruh di atas terrain). Memanggil Randomize, Screen.Cursor := crHourGlass
+  dengan try/finally, di akhir Image321.Invalidate. Objek diurutkan y-sort.
+- BikinRumahDesa3(Image321; Jumlah): sama, tapi sebanyak Jumlah rumah.
+- GambarRumahDesa3: CX,CY = titik tengah alas tanah rumah di Bmp. Pada
+  Skala 1.0 lebar rumah tanpa halaman sekitar 300 px. Seed menentukan seluruh
+  variasi. Halaman = True menambah alas tanah, pagar, dan aksesoris.
+  Merender ke sprite beralpha lalu blend ke Bmp (set DrawMode := dmBlend
+  pada sprite sebelum DrawTo).
+- BikinLembarUjiRumahDesa3: menggambar grid 4x3 berisi 12 rumah dengan Seed
+  berbeda di atas latar cokelat tanah polos, untuk menguji variasi.
+
+Uses yang boleh (hanya ini): Windows, SysUtils, Classes, Graphics, Controls,
+Forms, GR32, GR32_Image, Math. Unit ini MANDIRI: tidak boleh memakai atau
+mengenal unit lain milik proyek (Unit1, Bikin_*, dll). Semua helper (hash,
+noise, blur, thread, dll) ditulis sendiri di bagian implementation, dan
+SEMUA identifier tingkat-unit di implementation diberi awalan "Rd" (misal
+RdHash, RdMix, TRdThread) supaya tidak bentrok dengan unit lain.
+
+INGAT! Delphi 7 Variabelnya TIDAK CASE SENSITIVE! jadi jangan bikin nama Var yang sama!
+
+Performa dan multi-core (WAJIB): semua pekerjaan render yang berat
+(rasterisasi permukaan, tekstur per piksel, bayangan, downsample,
+pelapukan) harus berjalan paralel di SEMUA core CPU dan bebannya dibagi rata:
+- jumlah thread = jumlah prosesor logis (GetSystemInfo, dwNumberOfProcessors,
+  minimal 1, maksimal 64)
+- bagi pekerjaan jadi unit kecil (satu baris, atau pita 8-16 baris, atau
+  tile kecil). Tiap thread mengambil unit berikutnya lewat penghitung
+  bersama dengan InterlockedIncrement sampai habis. DILARANG membagi jumlah
+  baris secara tetap per thread, karena thread yang kebagian area berat jadi
+  penentu waktu dan core lain menganggur.
+- pola thread: TThread.Create(True), FreeOnTerminate := False, Resume,
+  WaitForMultipleObjects pada semua handle, lalu Free tiap thread.
+- tiap thread hanya menulis ke baris/area miliknya. Tidak ada variabel global
+  yang diubah bersama. Konteks per-thread dikirim lewat field thread atau
+  record parameter.
+- Random dari System TIDAK aman untuk thread (RandSeed global). Di kode yang
+  berjalan di thread, semua keputusan acak dihitung dari hash (Hash2 dan
+  turunannya) berdasarkan Seed dan koordinat. Random hanya boleh dipakai di
+  thread utama.
+- yang dipararelkan adalah pekerjaan di dalam SATU rumah (bukan satu thread
+  per rumah), supaya satu rumah pun memakai semua core.
+- bagian yang urut atau saling bergantung (penyusunan objek, y-sort) tetap di
+  thread utama, sisanya paralel.
+
+============================================================================
+9. ATURAN KODE (WAJIB, Delphi 7)
+============================================================================
+- TANPA komentar apapun: tidak ada //, tidak ada { }, tidak ada (* *).
+- Jangan pakai fitur setelah Delphi 7: tidak ada generics, anonymous method,
+  inline var/for var, for..in, class var, class helper, record helper,
+  method di dalam record (record hanya berisi field), strict private,
+  directive inline, string Unicode (String berarti AnsiString), TArray<T>
+  (pakai array of Single dan SetLength), Exit(nilai).
+- Semua var dideklarasikan di awal rutin. Routine harus didefinisikan
+  sebelum dipakai (atau pakai forward). Overload diulang di implementation.
+- Floor, Ceil, Min, Max dari unit Math. Waspadai Round yang membulatkan ke
+  genap terdekat dan konversi implisit Single ke Integer.
+- Akses piksel langsung lewat bmp.Bits[...] dan Color32(R,G,B,A) seperti
+  di contoh gaya kode di bawah. Pakai hanya API GR32 yang terlihat di contoh
+  itu atau yang pasti ada di Graphics32 versi lama (1.9 sampai 2.x).
+- Bebas memakai TBitmap32.Create/Free dengan try/finally.
+- Format: indentasi 2 spasi, "begin" di baris sendiri, nama rapi.
+- DILARANG: TODO, stub, kerangka, "implementasi serupa", "...", kode yang
+  dipotong, atau fungsi kosong. Semua fungsi harus lengkap dan terpakai.
+- Sebelum menyerahkan, baca ulang seluruh kode baris demi baris untuk
+  kesalahan sintaks Delphi 7: titik koma, begin/end seimbang, var lengkap,
+  urutan deklarasi, tipe, nama bentrok. Jangan menulis kalimat apapun soal
+  ada/tidaknya compiler.
+- PASTIKAN BISA JALAN DI DELPHI 7!
+
+CONTOH GAYA KODE (dari proyek yang sama, tiru gayanya dan pakai idiom GR32
+yang sama):
+
+function Hash2(ix, iy, seed: Integer): Single;
+var
+  h: Int64;
+begin
+  h := ((Int64(ix) and $FFFFFFFF) * 374761393) and $FFFFFFFF;
+  h := (h + ((Int64(iy) and $FFFFFFFF) * 668265263)) and $FFFFFFFF;
+  h := (h + ((Int64(seed) and $FFFFFFFF) * 1597334677)) and $FFFFFFFF;
+  h := ((h xor (h shr 13)) * 1274126177) and $FFFFFFFF;
+  h := h xor (h shr 16);
+  Result := (h and $FFFFFF) / 16777216;
+end;
+
+function VNoise(x, y: Single; seed: Integer): Single;
+var
+  ix, iy: Integer;
+  fx, fy, a, b, c, d: Single;
+begin
+  ix := Floor(x);
+  iy := Floor(y);
+  fx := x - ix;
+  fy := y - iy;
+  fx := fx * fx * (3 - 2 * fx);
+  fy := fy * fy * (3 - 2 * fy);
+  a := Hash2(ix, iy, seed);
+  b := Hash2(ix + 1, iy, seed);
+  c := Hash2(ix, iy + 1, seed);
+  d := Hash2(ix + 1, iy + 1, seed);
+  Result := a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+end;
+
+function Clamp255(v: Single): Integer;
+begin
+  if v < 0 then
+    v := 0
+  else if v > 255 then
+    v := 255;
+  Result := Round(v);
+end;
+
+procedure PutDotBlend(bmp: TBitmap32; px, py, rx, ry: Single; r, g, b, a: Single);
+var
+  xi, yi, x0, x1, y0, y1, o: Integer;
+  d, alphaFactor, finalAlpha: Single;
+  c: TColor32;
+  qr, qg, qb, qa: Integer;
+begin
+  x0 := Max(0, Floor(px - rx - 1));
+  x1 := Min(bmp.Width - 1, Ceil(px + rx + 1));
+  y0 := Max(0, Floor(py - ry - 1));
+  y1 := Min(bmp.Height - 1, Ceil(py + ry + 1));
+  for yi := y0 to y1 do
+    for xi := x0 to x1 do
+    begin
+      d := Sqrt(Sqr((xi + 0.5 - px) / rx) + Sqr((yi + 0.5 - py) / ry));
+      if d >= 1.0 then Continue;
+      alphaFactor := (1.0 - d * d) * a;
+      if alphaFactor <= 0 then Continue;
+      o := yi * bmp.Width + xi;
+      c := bmp.Bits[o];
+      qr := (c shr 16) and $FF;
+      qg := (c shr 8) and $FF;
+      qb := c and $FF;
+      finalAlpha := Min(1.0, alphaFactor);
+      bmp.Bits[o] := Color32(
+        Clamp255(qr + (r - qr) * finalAlpha),
+        Clamp255(qg + (g - qg) * finalAlpha),
+        Clamp255(qb + (b - qb) * finalAlpha),
+        255
+      );
+    end;
+end;
+
+(Ini hanya contoh gaya. Di RumahDesa3.pas semua identifier tingkat-unit
+tetap harus berawalan "Rd".)
+
+============================================================================
+10. FORMAT KELUARAN
+============================================================================
+Serahkan dua file:
+1. RumahDesa3_Catatan.txt : resep lengkap, kamus variasi, parameter,
+   keputusan desain, status pekerjaan dan hal yang belum selesai.
+2. RumahDesa3.pas : kode lengkap dan siap dipakai, tanpa komentar.
+Kalau kamu bisa membuat file, buat kedua file itu. Kalau tidak, kirim
+masing-masing dalam satu blok kode. Kalau kode terlalu panjang untuk satu
+balasan, potong HANYA di batas antar-prosedur, akhiri balasan dengan tepat
+"[BERSAMBUNG]", dan lanjutkan saat aku mengetik "lanjut" tanpa mengulang kode
+yang sudah dikirim dan tanpa ringkasan.
+Setelah kode selesai, tulis penutup maksimal 8 baris: cara pakai dari form
+(uses RumahDesa3; lalu BikinRumahDesa3(Image321);) dan kelemahan yang kamu
+ketahui. Untuk revisi berikutnya, kirim RumahDesa3.pas penuh dengan nama
+yang sama.
+
+Mulai sekarang. Jangan bertanya.

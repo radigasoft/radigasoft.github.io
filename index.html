@@ -11,7 +11,7 @@
       --bg-glow: #0c2e35;
       --frame-bg: #082026;
       --card-bg: #082026;
-      --card-hover: #0d2b32;
+      --card-hover: #0c2b32;
       --border-soft: #1a4750;
       --gold: #e8b638;
       --teal: #2b8a85;
@@ -30,7 +30,7 @@
       min-height: 100vh;
       background-color: var(--bg-mid);
       background-image:
-        radial-gradient(circle at 35% 50%, var(--bg-glow) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
+        radial-gradient(circle at 22% 50%, var(--bg-glow) 0%, var(--bg-mid) 45%, var(--bg-dark) 100%);
       color: var(--text-main);
       display: flex;
       flex-direction: column;
@@ -52,6 +52,7 @@
     .brand-panel {
       flex-shrink: 0;
       background: #082026;
+      background-color: #082026;
       border: 1px solid var(--border-soft);
       border-radius: 14px;
       overflow: hidden;
@@ -131,8 +132,8 @@
 
     .app-card:hover {
       transform: translateY(-2px);
-      background: #0d2b32;
-      background-color: #0d2b32;
+      background: #0c2b32;
+      background-color: #0c2b32;
       border-color: rgba(232, 182, 56, 0.55);
     }
 
@@ -155,7 +156,7 @@
       flex: 1;
       min-width: 0;
       padding: 16px 0;
-      background-color: transparent;
+      background-color: #082026;
     }
 
     .app-name {
@@ -174,7 +175,7 @@
 
     .app-btn {
       display: inline-block;
-      background-color: var(--gold);
+      background-color: #e8b638;
       color: #082026;
       font-size: 13px;
       font-weight: 700;

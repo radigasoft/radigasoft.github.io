@@ -7,12 +7,12 @@
   <style>
     :root {
       --bg-dark: #051619;
-      --bg-mid: #071d22;
-      --bg-glow: #0b2a30;
+      --bg-mid: #082026;
+      --bg-glow: #0c2e35;
       --frame-bg: #082026;
       --card-bg: #082026;
-      --card-hover: #0c2a31;
-      --border-soft: #173f47;
+      --card-hover: #0d2b32;
+      --border-soft: #1a4750;
       --gold: #e8b638;
       --teal: #2b8a85;
       --text-main: #f3f7f7;
@@ -30,7 +30,7 @@
       min-height: 100vh;
       background-color: var(--bg-mid);
       background-image:
-        radial-gradient(circle at 18% 50%, var(--bg-glow) 0%, var(--bg-mid) 45%, var(--bg-dark) 100%);
+        radial-gradient(circle at 35% 50%, var(--bg-glow) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
       color: var(--text-main);
       display: flex;
       flex-direction: column;
@@ -51,12 +51,12 @@
 
     .brand-panel {
       flex-shrink: 0;
-      background-color: var(--card-bg);
+      background: #082026;
       border: 1px solid var(--border-soft);
       border-radius: 14px;
       overflow: hidden;
       text-align: center;
-      box-shadow: 0 12px 32px rgba(3, 12, 13, 0.45);
+      box-shadow: 0 12px 30px rgba(3, 12, 13, 0.35);
       display: inline-flex;
       flex-direction: column;
       align-items: center;
@@ -66,7 +66,7 @@
       display: block;
       width: fit-content;
       max-width: 100%;
-      background-color: var(--frame-bg);
+      background-color: #082026;
       line-height: 0;
     }
 
@@ -80,7 +80,7 @@
     .brand-footer {
       width: 100%;
       padding: 12px 16px;
-      background-color: var(--frame-bg);
+      background-color: #082026;
     }
 
     .brand-subtitle {
@@ -116,7 +116,8 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      background-color: var(--card-bg);
+      background: #082026;
+      background-color: #082026;
       border: 1px solid var(--border-soft);
       border-radius: 14px;
       padding: 0;
@@ -125,12 +126,13 @@
       text-decoration: none;
       color: inherit;
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-      box-shadow: 0 10px 26px rgba(3, 12, 13, 0.38);
+      box-shadow: 0 12px 30px rgba(3, 12, 13, 0.35);
     }
 
     .app-card:hover {
       transform: translateY(-2px);
-      background-color: var(--card-hover);
+      background: #0d2b32;
+      background-color: #0d2b32;
       border-color: rgba(232, 182, 56, 0.55);
     }
 
@@ -138,7 +140,7 @@
       display: block;
       width: fit-content;
       flex-shrink: 0;
-      background-color: var(--frame-bg);
+      background-color: #082026;
       line-height: 0;
     }
 
@@ -153,7 +155,7 @@
       flex: 1;
       min-width: 0;
       padding: 16px 0;
-      background-color: var(--frame-bg);
+      background-color: transparent;
     }
 
     .app-name {

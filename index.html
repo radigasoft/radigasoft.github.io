@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RadigaSoft - Software Hub & Indie Projects</title>
+  <title>DigitalUmmah - RadigaSoft Software Hub</title>
   <style>
     :root {
-      --bg-color: #121316;
-      --card-bg: #1c1e22;
-      --border-color: #2e323b;
+      --bg-color: #0c0e12;
+      --card-bg-left: #16181d;
+      --card-bg-right: #111317;
+      --border-color: #242831;
+      --border-accent: #1e463d;
+      --accent-gold: #cfa851;
+      --accent-green: #14b8a6;
       --text-main: #f0f2f5;
       --text-muted: #9aa0a6;
-      --accent: #e74c3c;
     }
 
     * {
@@ -27,95 +30,265 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 40px 20px;
     }
 
-    .container {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 32px;
+    .main-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      max-width: 980px;
       width: 100%;
-      max-width: 420px;
+      margin: auto;
+    }
+
+    /* KOLOM KIRI: Identitas & Logo */
+    .brand-section {
+      background-color: var(--card-bg-left);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 32px;
+      flex: 1;
+      max-width: 380px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
     }
 
-    /* KOTAK CONTAINER 1:1 PERSEGI FULL */
-    .logo-box {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 10px;
-      margin-bottom: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
+    .logo-container {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 24px auto;
     }
 
-    /* GAMBAR FULL NGEPAS KOTAK */
-    .logo-box img {
+    .logo-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: block;
+      object-fit: contain;
     }
 
     .badge {
-      display: inline-block;
-      background-color: rgba(231, 76, 60, 0.15);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(207, 168, 81, 0.1);
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold);
+      font-size: 11px;
       font-weight: 600;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
       margin-bottom: 8px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
-    p {
+    h1 span {
+      color: var(--accent-gold);
+    }
+
+    .tagline {
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.5;
     }
 
-    footer {
-      margin-top: 24px;
+    /* KONEKTOR CIRUIT (GARIS) */
+    .connector-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      position: relative;
+    }
+
+    .circuit-path {
+      width: 100%;
+      height: 160px;
+    }
+
+    /* KOLOM KANAN: Apps Cards */
+    .apps-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      flex: 1.2;
+      max-width: 480px;
+    }
+
+    .app-card {
+      background-color: var(--card-bg-right);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(20, 184, 166, 0.15);
+    }
+
+    .app-card.prayer-card:hover {
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 24px rgba(207, 168, 81, 0.15);
+    }
+
+    .app-card.quran-card:hover {
+      border-color: var(--accent-green);
+      box-shadow: 0 8px 24px rgba(20, 184, 166, 0.15);
+    }
+
+    .app-thumb {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #0d0f12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-info {
+      flex: 1;
+    }
+
+    .app-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .app-desc {
       font-size: 13px;
       color: var(--text-muted);
-      opacity: 0.6;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .btn-action {
+      display: inline-block;
+      background-color: var(--accent-gold);
+      color: #121316;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .quran-card .btn-action {
+      background-color: var(--accent-gold); /* Disamakan supaya senada */
+    }
+
+    .app-card:hover .btn-action {
+      filter: brightness(1.1);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* RESPONSIVE LAYOUT UNTUK LAYAR KECIL (MOBILE) */
+    @media (max-width: 768px) {
+      .main-wrapper {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .connector-line {
+        display: none; /* Menyembunyikan sirkuit pada tampilan mobile agar rapi */
+      }
+      .brand-section, .apps-section {
+        max-width: 100%;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- LOGO CONTAINER 1:1 -->
-    <div class="logo-box">
-      <img src="logo.jpg" alt="RadigaSoft Logo">
+  <div class="main-wrapper">
+    <!-- KOLOM KIRI -->
+    <div class="brand-section">
+      <div class="logo-container">
+        <img src="logo-digitalummah.png" alt="DigitalUmmah Logo">
+      </div>
+      <div class="badge">
+        🔥 UPDATE AVAILABLE
+      </div>
+      <h1>Digital<span>Ummah</span></h1>
+      <p class="tagline">Connecting the Global Ummah & Indie Projects</p>
     </div>
 
-    <!-- STATUS BADGE -->
-    <div class="badge">
-      🧱 Under Construction
+    <!-- KONEKTOR CIRUIT (GARIS) -->
+    <div class="connector-line">
+      <!-- File SVG ini menghasilkan jalur sirkuit 45-derajat berkilau emas/hijau tanpa bulatan kaku -->
+      <svg class="circuit-path" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0 80 L 30 80 L 50 40 L 80 40" stroke="#cfa851" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <path d="M 0 80 L 30 80 L 50 120 L 80 120" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <!-- Titik Penghubung Halus -->
+        <circle cx="8" cy="80" r="3" fill="#cfa851" />
+        <circle cx="76" cy="40" r="3" fill="#cfa851" />
+        <circle cx="76" cy="120" r="3" fill="#14b8a6" />
+      </svg>
     </div>
 
-    <!-- BRANDING -->
-    <h1>RadigaSoft</h1>
-    <p>Software distribution hub & indie project showcase.</p>
+    <!-- KOLOM KANAN -->
+    <div class="apps-section">
+      <!-- Jam Shalat Digital -->
+      <a href="/jam-shalat" class="app-card prayer-card">
+        <div class="app-thumb">
+          <img src="jam-shalat-thumb.png" alt="Jam Shalat Preview">
+        </div>
+        <div class="app-info">
+          <div class="app-title">Jam Shalat Digital</div>
+          <div class="app-desc">Jadwal Shalat & Pengingat Adzan Presisi.</div>
+          <span class="btn-action">Lihat Aplikasi</span>
+        </div>
+      </a>
+
+      <!-- Al-Qur'an Digital -->
+      <a href="/al-quran" class="app-card quran-card">
+        <div class="app-thumb">
+          <img src="al-quran-thumb.png" alt="Al-Qur'an Preview">
+        </div>
+        <div class="app-info">
+          <div class="app-title">Al-Qur'an Digital</div>
+          <div class="app-desc">Bacaan, Terjemahan, Tajwid & Bookmark.</div>
+          <span class="btn-action">Mulai Membaca</span>
+        </div>
+      </a>
+    </div>
   </div>
 
   <footer>
-    &copy; RadigaSoft. All rights reserved.
+    © RadigaSoft. All rights reserved.
   </footer>
 
 </body>

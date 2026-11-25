@@ -9,6 +9,7 @@
       --bg-dark: #071b1d;
       --bg-mid: #0c2b2e;
       --bg-glow: #113a3e;
+      --frame-bg: #082026;
       --card-bg: rgba(10, 36, 39, 0.72);
       --card-hover: rgba(15, 49, 53, 0.92);
       --border-soft: rgba(52, 138, 134, 0.28);
@@ -48,7 +49,6 @@
       gap: 18px;
     }
 
-    /* PANEL KIRI: tanpa padding di sekeliling gambar */
     .brand-panel {
       flex-shrink: 0;
       background: var(--card-bg);
@@ -66,6 +66,7 @@
       display: block;
       width: fit-content;
       max-width: 100%;
+      background-color: var(--frame-bg);
       line-height: 0;
     }
 
@@ -87,7 +88,6 @@
       line-height: 1.4;
     }
 
-    /* CABANG TENGAH */
     .branch-connector {
       width: 84px;
       height: 220px;
@@ -103,7 +103,6 @@
       overflow: visible;
     }
 
-    /* PANEL KANAN */
     .apps-panel {
       flex: 1;
       max-width: 580px;
@@ -134,11 +133,11 @@
       border-color: rgba(232, 182, 56, 0.55);
     }
 
-    /* Gambar nempel penuh sampai tepi kiri & atas-bawah card */
     .app-icon-frame {
       display: block;
       width: fit-content;
       flex-shrink: 0;
+      background-color: var(--frame-bg);
       line-height: 0;
     }
 

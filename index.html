@@ -11,8 +11,8 @@
       --bg-glow: #0d2f36;
       --frame-bg: #082026;
       --card-bg: #082026;
-      --card-hover: #0c2b32;
       --border-soft: #1a4750;
+      --border-hover: rgba(232, 182, 56, 0.72);
       --gold: #e8b638;
       --teal: #2b8a85;
       --text-main: #f3f7f7;
@@ -123,13 +123,19 @@
       overflow: hidden;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      transform: translateY(0);
+      box-shadow: 0 0 0 rgba(232, 182, 56, 0);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
     }
 
     .app-card:hover {
-      transform: translateY(-2px);
-      background-color: var(--card-hover);
-      border-color: rgba(232, 182, 56, 0.55);
+      background-color: var(--card-bg);
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
+      box-shadow: 0 0 0 1px rgba(232, 182, 56, 0.22),
+                  0 8px 24px rgba(232, 182, 56, 0.12);
     }
 
     .app-icon-frame {
@@ -154,10 +160,6 @@
       background-color: var(--card-bg);
     }
 
-    .app-card:hover .app-body {
-      background-color: var(--card-hover);
-    }
-
     .app-name {
       font-size: 21px;
       font-weight: 700;
@@ -180,11 +182,11 @@
       font-weight: 700;
       padding: 7px 15px;
       border-radius: 7px;
-      transition: filter 0.2s ease;
+      transition: filter 0.25s ease;
     }
 
     .app-card:hover .app-btn {
-      filter: brightness(1.07);
+      filter: brightness(1.06);
     }
 
     footer {
@@ -249,7 +251,7 @@
     </div>
 
     <section class="apps-panel">
-      <a href="jam-shalat/" class="app-card">
+      <a href="jam-shalat.html" class="app-card">
         <div class="app-icon-frame">
           <img src="LogoJam.jpg" alt="Jam Shalat Digital">
         </div>
@@ -260,7 +262,7 @@
         </div>
       </a>
 
-      <a href="al-quran/" class="app-card">
+      <a href="al-quran.html" class="app-card">
         <div class="app-icon-frame">
           <img src="LogoAlquran.jpg" alt="Al-Qur'an Digital">
         </div>

@@ -48,13 +48,13 @@
       gap: 18px;
     }
 
-    /* PANEL KIRI */
+    /* PANEL KIRI: tanpa padding di sekeliling gambar */
     .brand-panel {
       flex-shrink: 0;
       background: var(--card-bg);
       border: 1px solid var(--border-soft);
       border-radius: 14px;
-      padding: 20px;
+      overflow: hidden;
       text-align: center;
       box-shadow: 0 16px 40px rgba(3, 12, 13, 0.55);
       display: inline-flex;
@@ -62,15 +62,11 @@
       align-items: center;
     }
 
-    /* Frame ngikutin ukuran gambar tanpa paksaan tinggi/lebar kotak tetap */
     .brand-logo-frame {
-      display: inline-block;
+      display: block;
       width: fit-content;
       max-width: 100%;
-      border-radius: 10px;
-      overflow: hidden;
       line-height: 0;
-      margin-bottom: 14px;
     }
 
     .brand-logo-frame img {
@@ -80,20 +76,9 @@
       max-width: 100%;
     }
 
-    .brand-title {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.4px;
-      margin-bottom: 6px;
-    }
-
-    .brand-title .gold {
-      color: var(--gold);
-    }
-
-    .brand-title .white {
-      color: #ffffff;
+    .brand-footer {
+      width: 100%;
+      padding: 12px 16px;
     }
 
     .brand-subtitle {
@@ -134,7 +119,9 @@
       background: var(--card-bg);
       border: 1px solid var(--border-soft);
       border-radius: 14px;
-      padding: 16px;
+      padding: 0;
+      padding-right: 22px;
+      overflow: hidden;
       text-decoration: none;
       color: inherit;
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
@@ -147,13 +134,11 @@
       border-color: rgba(232, 182, 56, 0.55);
     }
 
-    /* Frame icon ngikutin ukuran asli gambar tanpa di-stretch */
+    /* Gambar nempel penuh sampai tepi kiri & atas-bawah card */
     .app-icon-frame {
-      display: inline-block;
+      display: block;
       width: fit-content;
       flex-shrink: 0;
-      border-radius: 12px;
-      overflow: hidden;
       line-height: 0;
     }
 
@@ -167,6 +152,7 @@
     .app-body {
       flex: 1;
       min-width: 0;
+      padding: 16px 0;
     }
 
     .app-name {
@@ -227,6 +213,11 @@
       .app-card {
         flex-direction: column;
         text-align: center;
+        padding-right: 0;
+      }
+
+      .app-body {
+        padding: 16px 20px 20px;
       }
     }
   </style>
@@ -238,10 +229,9 @@
       <div class="brand-logo-frame">
         <img src="logoDigitalUmmah.jpg" alt="DigitalUmmah Logo">
       </div>
-      <h1 class="brand-title">
-        <span class="gold">Digital</span><span class="white">Ummah</span>
-      </h1>
-      <p class="brand-subtitle">Portal software muslim Modern</p>
+      <div class="brand-footer">
+        <p class="brand-subtitle">Portal software muslim Modern</p>
+      </div>
     </section>
 
     <div class="branch-connector" aria-hidden="true">
